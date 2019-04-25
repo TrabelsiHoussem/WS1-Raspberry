@@ -1,21 +1,42 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Robot</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="main.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ROBOT</title>
+    <link rel="stylesheet" href="css/design.css">
+
+
 </head>
 
 <body>
     <center>
-        <h1>robot</h1>
-        <img src="http://192.168.1.4:9081" alt=""><br><br>
-        <button onclick="led('on')"> led on</button>
-        <button onclick="led('off')">led off</button>
+        <img src="http://192.168.1.11:8081" alt="error streaming">
+        <br>
+        <br>
+        <button onclick="navigation('avancer');">Avancer</button><br>
+        <button onclick="navigation('gauche')">Gauche </button>
+        <button onclick="navigation('stop')">STOP</button>
+        <button onclick="navigation('droite')">Droite</button><br>
+        <button onclick="navigation('reculer')">Reculer</button>
     </center>
+
+    <script>
+        function navigation(navigation) {
+            //alert(test);
+
+            if (navigation == 'undefined') {
+                return;
+            }
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("POST", "http://192.168.1.11:8089", true);
+            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xmlhttp.send("direction=" + navigation);
+        }
+    </script>
 </body>
+
 
 </html>
